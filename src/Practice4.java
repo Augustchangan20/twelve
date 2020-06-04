@@ -34,21 +34,5 @@ public class Practice4 {
 //    }
 //}
 //
-// public static int fac(int n){
-//        System.out.println("n的阶乘为 n =" +n);
-//        int result = 1;
-//        int sum = 0;
-//        for(int i = 1;i <= n;i++){
-//            result *=i;
-//            sum += result;
-//        }
-//        return sum;
-//    }
-//    public static void main(String[] args) {
-//
-//            sum += fac(i);
-//        }
-//        System.out.println("sum =" + sum);
-//    }
-//}
+
 
