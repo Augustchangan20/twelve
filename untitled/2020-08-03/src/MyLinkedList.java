@@ -142,6 +142,7 @@ public class MyLinkedList {//无头单向非循环链表实现
             }else{
                 prev = cur;
                 cur = cur.next;
+
             }
         }
         if (this.head.data==key){
@@ -159,7 +160,75 @@ public class MyLinkedList {//无头单向非循环链表实现
     }
         System.out.println();
     }
-    public void clear(){
+    //可解决内存泄漏
+    public void clear(){//释放内存
+        this.head = null;
 
+    }
+
+
+    //反转单链表
+    public Node reverseList() {
+        Node cur = head;
+        Node prev = null;
+//        Node newHead = null;
+        while(cur != null){
+            Node curNext = cur.next;
+//             if(curNext == null){
+//                 newHead = cur;
+//             }
+            cur.next = prev;
+            prev = cur;
+            cur =  curNext;
+        }
+//         return newHead;
+        return prev;
+    }
+    public void display2(Node newHead){
+        Node cur = newHead ;
+        while (cur!=null){
+            System.out.print(cur.data+" ");
+            cur = cur.next;
+        }
+        System.out.println();
+    }
+
+    //找中间节点
+    public Node middleNode() {
+        Node slow = this.head;
+        Node fast = this.head;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+
+    //查找倒数第k个值
+    public Node FindKthToTail(int k) {
+        Node slow = this.head;
+        Node fast = this.head;
+        if (this.head == null){
+            return null;
+        }
+        if (k <= 0){
+            System.out.println("k位置不合法");
+            return null;
+        }
+        while (k-1 > 0){
+            if (fast.next != null){
+                fast = fast.next;
+                k--;
+            }else {
+                System.out.println("无此节点");
+                return null;
+            }
+        }
+        while (fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
     }
 }

@@ -10,11 +10,18 @@ public class TestDemo {
         myLinkedList.addFirst(12);
         myLinkedList.addFirst(13);
         myLinkedList.display();
-        myLinkedList.addLast(10);
+        System.out.println(myLinkedList.FindKthToTail(2).data);
+        System.out.println(myLinkedList.FindKthToTail(1).data);
+//        System.out.println(myLinkedList.FindKthToTail(0).data);
+     /*   System.out.println(myLinkedList.middleNode().data);
+        Node ret = myLinkedList.reverseList();
+        myLinkedList.display2(ret);*/
+
+     /*   myLinkedList.addLast(10);
         myLinkedList.addLast(11);
         myLinkedList.addLast(12);
-        myLinkedList.addLast(13);
-        myLinkedList.display();
+        myLinkedList.addLast(13);*/
+ /*       myLinkedList.display();
         //打印contains的两种方法
         System.out.println(myLinkedList.contains(11));
         boolean flg = myLinkedList.contains(14);
@@ -25,7 +32,9 @@ public class TestDemo {
         myLinkedList.remove(10);
         myLinkedList.display();
         myLinkedList.removeAllKey(13);
-        myLinkedList.display();
+        myLinkedList.display();*/
+       /* myLinkedList.clear();
+        System.out.println("hhhhhhhh");*/
 
     }
     
