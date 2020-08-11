@@ -231,4 +231,130 @@ public class MyLinkedList {//无头单向非循环链表实现
         }
         return slow;
     }
+
+    //链表分割
+    public Node partition(int x) {
+        Node bs = null;
+        Node be = null;
+        Node as = null;
+        Node ae = null;
+        Node cur = this.head;
+        while (cur != null){
+            if (cur.data < x){
+                if (bs == null){
+                    bs = cur;
+                    be = cur;
+                }else {
+                    be.next = cur;
+                    be = be.next;
+                }
+
+            }else {
+                if (as == null){
+                    as = cur;
+                    ae = cur;
+                }else {
+                    ae.next = cur;
+                    ae = ae.next;
+                }
+            }
+            cur = cur.next;
+        }
+        //1>判断bs是否为空  如果bs == null 返回as
+        if (bs == null){
+            return as;
+        }
+        //2>如果bs不为空  进行拼接
+        be.next = as;
+        //3> 如果ae不为空   ae的next值需要置为空
+        if (ae != null){
+            ae.next = null;
+        }
+        return bs;
+    }
+
+    //删除重复的节点
+    public Node deleteDuplication()
+    {
+        Node newHead = new Node(-1);
+        Node cur = this.head;
+        Node tmp = newHead;
+        while (cur != null) {
+            if (cur.next != null && cur.data == cur.next.data) {
+                while (cur != null && cur.data == cur.next.data) {
+                    cur = cur.next;
+                }
+                cur = cur.next;//cur需要多走一步
+            } else {
+                tmp.next = cur;
+                tmp = tmp.next;
+                cur = cur.next;
+            }
+        }
+        tmp.next = null;
+        return newHead.next;
+    }
+
+
+
+    //判断回文结构
+    public boolean chkPalindrome() {
+        //单链表为空 肯定不是回文结构
+        if (this.head == null){
+            return false;
+        }
+        //只有头节点自己 必然是回文结构
+        if (head.next == null){
+            return true;
+        }
+        //1> 找到链表的中间节点
+       Node slow = this.head;
+       Node fast = this.head;
+       while (fast != null && fast.next != null){
+           fast = fast.next.next;
+           slow = slow.next;
+       }
+       //2> 反转链表的后半部分 slow肯定在中间部分
+        Node cur = slow.next;
+       while (cur != null){
+           Node curNext = cur.next;
+           cur.next = slow;
+           slow = cur;
+           cur = curNext;
+       }
+       //slow是最后一个节点了
+       //3>head从头走 slow从尾巴走
+        while (slow != this.head){
+        if (this.head.data != slow.data){
+           return false;
+        }
+        //如果单链表是偶数的情况
+        if (this.head.next == slow){
+            return true;
+        }
+            this.head = this.head.next;
+            slow = slow.next;
+    }
+        return true;
+    }
+
+
+    //判断链表是否有环
+    public boolean hasCycle() {
+        Node fast = this.head;
+        Node slow = this.head;
+        while (fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow){
+//                return true;
+                break;
+            }
+        }
+//        return  false;
+        if (fast == null || fast.next == null){
+            return false;
+        }
+        return true;
+    }
 }
