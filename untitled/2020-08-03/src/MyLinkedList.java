@@ -357,4 +357,26 @@ public class MyLinkedList {//无头单向非循环链表实现
         }
         return true;
     }
+
+    //给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null
+    public Node detectCycle() {
+        Node fast = this.head;
+        Node slow = this.head;
+        while (fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow){
+                break;
+            }
+        }
+        if (fast == null || fast.next == null){
+            return null;
+        }
+        slow = this.head;
+        while (slow != fast){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+    }
 }
